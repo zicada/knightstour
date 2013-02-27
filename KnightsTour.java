@@ -33,7 +33,8 @@ class KnightsTour {
 	private boolean solve(int row, int col) {
 		count++;
 		board[row][col] = true;
-
+		
+		// Solution found 
 		if (count == spaces)
 			return true;
 
@@ -55,13 +56,14 @@ class KnightsTour {
 			// If not it's overwritten later
 			solution[row][col] = count;
 			
-			// Try this move, if it leads to a solution, push each step onto the stack
+			// Try this move, if it leads to a solution, push it (and thus every other move) onto the stack
 			if (solve(nextRow, nextCol)) {
 				addMove(row, col, nextRow, nextCol);
 				return true;
 			}
 		}
 		
+		solution[row][col] = 0;
 		count--;
 		board[row][col] = false;
 
@@ -95,9 +97,9 @@ class KnightsTour {
 	}
 
 	public static void main(String[] args) {
-		KnightsTour tour = new KnightsTour(5, 5);
+		KnightsTour tour = new KnightsTour(12, 12);
 		
-		if(tour.solve(0,0)){
+		if(tour.solve(3,6)){
 			tour.printBoard();
 			tour.printSolution();
 		} else {

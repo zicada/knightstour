@@ -54,7 +54,7 @@ class KnightsTour {
 
 			// Add this move to the solution in case we're on the right track
 			// If not it's overwritten later
-			solution[row][col] = count;
+			solution[nextRow][nextCol] = count;
 			
 			// Try this move, if it leads to a solution, push it (and thus every other move) onto the stack
 			if (solve(nextRow, nextCol)) {
@@ -62,8 +62,7 @@ class KnightsTour {
 				return true;
 			}
 		}
-		
-		solution[row][col] = 0;
+		// We are backtracking
 		count--;
 		board[row][col] = false;
 
@@ -80,8 +79,6 @@ class KnightsTour {
 		System.out.println("Solution shown on board\n");
 		for (int[] rows : solution) {
 			for (int r : rows) {
-				if (r == 0)
-					r = count;
 				System.out.printf("%2d ", r);
 			}
 			System.out.println();
@@ -97,9 +94,9 @@ class KnightsTour {
 	}
 
 	public static void main(String[] args) {
-		KnightsTour tour = new KnightsTour(12, 12);
+		KnightsTour tour = new KnightsTour(9, 9);
 		
-		if(tour.solve(3,6)){
+		if(tour.solve(4,5)){
 			tour.printBoard();
 			tour.printSolution();
 		} else {

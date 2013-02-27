@@ -55,7 +55,7 @@ class KnightsTour {
 			// If not it's overwritten later
 			solution[row][col] = count;
 			
-			// Try this move, if it leads anywhere, push it onto the stack
+			// Try this move, if it leads to a solution, push each step onto the stack
 			if (solve(nextRow, nextCol)) {
 				addMove(row, col, nextRow, nextCol);
 				return true;
@@ -101,7 +101,7 @@ class KnightsTour {
 			tour.printBoard();
 			tour.printSolution();
 		} else {
-			System.out.print("No solution found");
+			System.out.println("No solution found");
 		}
 	}
 }

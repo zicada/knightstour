@@ -56,13 +56,15 @@ class KnightsTour {
 			// If not it's overwritten later
 			solution[nextRow][nextCol] = count;
 			
-			// Try this move, if it leads to a solution, push it (and thus every other move) onto the stack
+			// Try this move. If it leads to a solution, 
+			// push it (and thus every other move) onto the stack
 			if (solve(nextRow, nextCol)) {
 				addMove(row, col, nextRow, nextCol);
 				return true;
 			}
 		}
-		// We are backtracking
+		
+		// Start backtracking (None of the 8 moves were possible from this position)
 		count--;
 		board[row][col] = false;
 
@@ -94,9 +96,9 @@ class KnightsTour {
 	}
 
 	public static void main(String[] args) {
-		KnightsTour tour = new KnightsTour(9, 9);
+		KnightsTour tour = new KnightsTour(5, 5);
 		
-		if(tour.solve(4,5)){
+		if(tour.solve(0,2)){
 			tour.printBoard();
 			tour.printSolution();
 		} else {
